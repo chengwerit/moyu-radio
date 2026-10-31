@@ -1,0 +1,14 @@
+# 源码与文档统一用 LF 入库，工作区检出为 CRLF（Windows 友好）
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.json  text eol=lf
+*.bat   text eol=crlf
+# 二进制一律不转换
+*.dll   binary
+*.pyd   binary
+*.exe   binary
+*.zip   binary
+*.flac  binary
+*.jpg   binary
+*.png   binary
