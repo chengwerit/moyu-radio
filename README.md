@@ -6,8 +6,23 @@
 
 ## 快速开始
 
-**双击 `启动墨语电台.bat` 即可** —— 项目自带 Python 运行时（`runtime/`），
-不依赖你电脑上是否装过 Python。首次启动会自动补齐缺失的依赖。
+### 方式一：下载完整包（推荐，无需安装任何东西）
+
+前往 **[Releases v1.0.0](https://github.com/chengwerit/moyu-radio/releases/tag/v1.0.0)**，
+下载 `moyu-radio-v1.0-win64.zip`（75MB，内含自带 Python 运行时），
+解压后**双击 `启动墨语电台.bat`** 即可。
+
+### 方式二：从源码运行
+
+```bash
+git clone https://github.com/chengwerit/moyu-radio.git
+cd moyu-radio
+python -m pip install -r requirements.txt
+python app/main.py
+```
+
+> 本仓库只收录源码（17 个文件）；约 200MB 的 Python 运行时通过 Release 附件分发。
+> 完整包里的 `启动墨语电台.bat` 会自动找到同目录 `runtime/python.exe`，没有它也能退回到系统 Python。
 
 ## 功能
 
@@ -58,6 +73,13 @@ runtime/python.exe shot.py          # 截图
 ## 依赖
 
 PySide6 ≥ 6.5 · mutagen ≥ 1.45 · requests ≥ 2.31 · pycryptodome ≥ 3.19
-（已内置在 `runtime/`，`requirements.txt` 仅供手动安装时参考）
+（已内置在完整包的 `runtime/` 里，`requirements.txt` 仅供手动安装时参考）
 
 > 注：mutagen 1.48 起 `Picture.TYPE_FRONT_COVER` 常量已移除，代码中改用裸数字 3 并显式赋值 `mime`/`desc`/`data`。
+
+## 已知限制
+
+- **无损依赖第三方解灰服务**（`music-api.gdstudio.xyz`），该服务偶尔超时，程序已内置 4 次重试；极端情况下首次收藏可能失败，再点一次 ♥ 即可。
+- 部分新歌 / 冷门歌平台本身没有无损版本，此时会提示"该源只提供 MP3"。
+- 电台流无法收藏 —— 它是持续播放的流，不是可下载的单曲文件。
+- 跨平台曲目即使解析成功，也可能匹配到同名不同版本，程序已用标题 + 歌手双维度打分降低误配。
